@@ -1,7 +1,13 @@
-# Use an official Node.js runtime as a parent image
-FROM node:14
+# Use a base image with both Node.js and Python installed
+FROM nikolaik/python-nodejs:python3.8-nodejs14
 
 # Set the working directory in the container
+WORKDIR /usr/src/app
+
+# Clone the yt-dlp repository
+RUN git clone https://github.com/yt-dlp/yt-dlp.git
+
+# Change back to the app directory
 WORKDIR /usr/src/app
 
 # Copy the current directory contents into the container at /usr/src/app
@@ -16,5 +22,5 @@ EXPOSE 80
 # Define environment variable
 ENV NAME World
 
-# Run index.js when the container launches
+# Run server.js when the container launches
 CMD ["node", "server.js"]
