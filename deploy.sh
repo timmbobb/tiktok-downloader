@@ -66,7 +66,7 @@ fi
 
 # Deploy to Cloud Run
 echo "Deploying to Google Cloud Run..."
-
+gcloud config set run/region us-central1
 gcloud run deploy $SERVICE_NAME --image $IMAGE_NAME --platform managed
 
 # Check if Cloud Run deployment was successful
